@@ -1,11 +1,19 @@
 export function RepositoryItem(props) {
+  const createdAt = props.repository.created_at.replace(/[a-zA-Z]+/g, ' ');
+  const updatedAt = props.repository.updated_at.replace(/[a-zA-Z]+/g, ' ');
+
   return(
     <li>
-      <strong>{props.repository?.name ?? 'Nome do Repositório'}</strong>
-      <p>{props.repository?.description ?? 'Descrição'}</p>
+      <strong>{props.repository?.name}</strong>
+      <p>{props.repository?.description ?? 'Sem Descrição'}</p>
 
-      <a href="">
-        {props.repository?.link ?? 'Link para repositório'}
+      <p>Linguagem Principal: {props.repository.language}</p>
+
+      <p>Criado em {createdAt}</p>
+      <p>Atualizado em {updatedAt}</p>
+
+      <a href={props.repository?.html_url}>
+        Link para repositório
       </a>
     </li>
   );
